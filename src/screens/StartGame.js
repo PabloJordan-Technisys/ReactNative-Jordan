@@ -28,7 +28,7 @@ export default function StartGame(props) {
     <View style={styleGeneral.containerScreen}>
       <Text style={style.title}>Comenzar Juego</Text>
       <Card style={style.card}>
-        <Text>Elija un Numero</Text>
+        <Text style={{ fontFamily: "bakbak" }}>Elija un Numero</Text>
         <Input value={value} setValue={setValue} />
         <View style={style.containerButton}>
           <Button title={"Limpiar"} onPress={clean} color={Colors.accent} />
@@ -41,8 +41,8 @@ export default function StartGame(props) {
       </Card>
       <Card style={style.card2}>
         <Text style={style.title}>Tu Seleccion</Text>
-        <Text style={{ color: Colors.primary }}>25</Text>
-        <Button tittle={"Empezar Juego"} onPress={() => {}} />
+        <Text style={{ color: Colors.primary, fontSize: 20 }}>25</Text>
+        <Button title={"Empezar Juego"} onPress={() => {}} />
       </Card>
     </View>
   );
@@ -61,6 +61,7 @@ const style = StyleSheet.create({
   },
   containerButton: {
     width: 300,
+
     flexDirection: "row",
     justifyContent: "space-around",
   },

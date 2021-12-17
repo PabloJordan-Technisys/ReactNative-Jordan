@@ -8,7 +8,7 @@ import { styleGeneral } from "../Constants/Styles";
 export default function GameStart() {
   return (
     <View style={styleGeneral.containerScreen}>
-      <Text style={{ marginTop: 15 }}>La suposicion del oponente</Text>
+      <Text style={{ marginTop: 20 }}>La suposición del oponente</Text>
       <Text style={style.number}>50</Text>
       <Card style={style.containerButtons}>
         <Button title={"Menor"} onPress={() => {}} />
@@ -20,10 +20,8 @@ export default function GameStart() {
 
 const style = StyleSheet.create({
   containerButtons: {
-    width: 250,
+    minWidth: 250,
     height: 50,
-    flexDirection: "row",
-    justifyContent: "space-around",
   },
   number: {
     color: Colors.primary,
