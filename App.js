@@ -2,6 +2,7 @@ import {
   Button,
   FlatList,
   Modal,
+  SafeAreaView,
   StyleSheet,
   Text,
   TextInput,
@@ -9,81 +10,18 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 
+import Card from "./src/componets/Card";
+import Header from "./src/componets/Header";
+import StartGame from "./src/screens/StartGame";
+
 export default function App() {
-  const [list, setList] = useState([]);
-  const [textInput, setTextInput] = useState("");
-  const [modalVisible, setModalVisible] = useState(false);
-  const [itemSelected, setItemSelected] = useState({});
-
-  const onAdd = () => {
-    setList([
-      ...list,
-      { id: Math.floor(Math.random() * 100) + 1, value: textInput },
-    ]);
-  };
-
-  const onHandlerModal = (item) => {
-    setItemSelected(item);
-    setModalVisible(true);
-  };
-  const onDelete = (id) => {
-    setList(list.filter((item) => item.id != id));
-    setModalVisible(false);
-  };
-
   return (
-    <View style={styles.container}>
-      <Modal
-        visible={modalVisible}
-        transparent
-        animationType="fade"
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <View style={styles.containerModal}>
-          <View style={styles.infoContainer}>
-            <Text>Estas Seguro que deseas borrar {itemSelected.value}?</Text>
-            <View style={styles.containerButton}>
-              <Button
-                style={styles.button}
-                title="Si"
-                onPress={() => onDelete(itemSelected.id)}
-              />
-              <Button
-                style={styles.button}
-                title="No"
-                onPress={() => setModalVisible(false)}
-              />
-            </View>
-          </View>
-        </View>
-      </Modal>
-      <View style={styles.containerInput}>
-        <TextInput
-          placeholder="Escribe Aqui"
-          onChangeText={(text) => setTextInput(text)}
-          style={styles.input}
-        />
-        <Button title="Agregar" onPress={() => onAdd()} />
-      </View>
-      {list.length > 0 ? (
-        <FlatList
-          data={list}
-          renderItem={(data) => (
-            <View style={styles.containerItem}>
-              <Text
-                style={{ fontWeight: "bold", fontSize: 20, color: "white" }}
-              >
-                {data.item.value}
-              </Text>
-              <Button onPress={() => onHandlerModal(data.item)} title="X" />
-            </View>
-          )}
-          keyExtractor={(item) => item.id}
-        />
-      ) : (
-        <Text>No hay tareas</Text>
-      )}
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Header />
+      <StartGame>
+        <Card></Card>
+      </StartGame>
+    </SafeAreaView>
   );
 }
 
