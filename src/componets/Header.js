@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
+import { Colors } from "../Constants/Colors";
 import React from "react";
 
 export default function Header() {
@@ -13,7 +14,7 @@ export default function Header() {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "red",
+    backgroundColor: Colors.primary,
     alignItems: "center",
     justifyContent: "center",
   },
