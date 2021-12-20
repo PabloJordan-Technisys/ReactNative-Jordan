@@ -1,26 +1,30 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
 
-import { Button } from "react-native";
 import Card from "../componets/Card";
 import { Colors } from "../Constants/Colors";
 import Input from "../componets/Input";
-import React from "react";
 import { styleGeneral } from "../Constants/Styles";
-import { useState } from "react/cjs/react.development";
 
 export default function StartGame(props) {
   const [value, setValue] = useState("");
   const [confirm, setConfirm] = useState(false);
-  const [numberSelect, setNumberSelect] = useState(0);
+  const [numberSelect, setNumberSelect] = useState("");
 
   const clean = () => {
     setValue("");
+    setConfirm(false);
+  };
+
+  const handlerInput = (text) => {
+    setValue(text.replace(/[^0-9]/g), "");
   };
 
   const handleConfirm = () => {
     const numberParser = parseInt(value);
     if (numberParser !== NaN || numberParser <= 0 || numberParser > 99) return;
     setConfirm(true);
+    setNumberSelect(value);
     setValue("");
   };
 
@@ -41,8 +45,13 @@ export default function StartGame(props) {
       </Card>
       <Card style={style.card2}>
         <Text style={style.title}>Tu Seleccion</Text>
-        <Text style={{ color: Colors.primary, fontSize: 20 }}>25</Text>
-        <Button title={"Empezar Juego"} onPress={() => {}} />
+        <Text style={{ color: Colors.primary, fontSize: 20 }}>
+          {numberSelect}
+        </Text>
+        <Button
+          title={"Empezar Juego"}
+          onPress={() => props.onStartGame(numberSelect)}
+        />
       </Card>
     </View>
   );
